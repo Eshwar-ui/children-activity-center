@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Path Lost | BrightSteps Kids Activity Center</title>
+
+    <meta name="description" content="Hmm, it seems your little explorer has wandered off. Let's get back to the BrightSteps tracks.">
+
+    <!-- Required Icons -->
+    <link rel="icon" type="image/svg+xml" href="../assets/images/ui/favicon.svg">
+
+    <!-- Local Design System CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    <link rel="stylesheet" href="../assets/css/rtl.css">
+    
+    <!-- Tailwind Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../tailwind.config.js"></script>
+
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <style>
+        .reveal-up { opacity: 0; }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(15px, -25px) rotate(5deg); }
+            100% { transform: translate(0, 0); }
+        }
+    </style>
+</head>
+<body class="bg-neutral-50 text-neutral-800 antialiased font-sans dark:bg-neutral-900 dark:text-neutral-100 overflow-hidden">
+
+    <div class="min-h-screen flex flex-col items-center justify-center p-8 text-center bg-neutral-50 dark:bg-neutral-900 transition-colors duration-500">
+        <!-- LOGO -->
+        <a href="../index.html" class="absolute top-12">
+            <img src="../assets/images/ui/logo.svg" alt="BrightSteps" class="h-10 dark:invert opacity-50 hover:opacity-100 transition-opacity">
+        </a>
+
+        <div class="space-y-12 reveal-up">
+            <!-- 404 Visual -->
+            <div class="relative flex justify-center">
+                <span class="text-[12rem] lg:text-[18rem] font-black text-neutral-100 dark:text-neutral-800 leading-none select-none">404</span>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <img src="../assets/images/ui/logo.svg" alt="Lost explorer" class="h-32 floating dark:invert drop-shadow-2xl">
+                </div>
+            </div>
+
+            <div class="space-y-4 max-w-lg mx-auto">
+                <h1 class="text-4xl font-extrabold tracking-tight dark:text-neutral-50">Exploration Interrupted.</h1>
+                <p class="text-neutral-500 dark:text-neutral-400 font-medium">It seems your little explorer has wandered off the track. Don't worry, even the best adventurers get turned around sometimes!</p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <a href="../index.html" class="bg-primary text-white font-black px-10 py-5 rounded-2xl shadow-xl shadow-primary/20 hover:shadow-2xl hover:-translate-y-1 transition-all text-xs uppercase tracking-widest">
+                    Back to Campus
+                </a>
+                <a href="contact.html" class="text-neutral-500 hover:text-primary font-bold text-xs uppercase tracking-widest transition-colors py-4 px-8 border border-neutral-200 dark:border-neutral-700 rounded-2xl">
+                    Report Issue
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <p class="absolute bottom-12 text-[11px] uppercase font-semibold tracking-[0.15em] text-neutral-500 dark:text-neutral-400">&copy; 2026 BrightSteps Texas Campus</p>
+    </div>
+
+    <!-- MAIN JS -->
+    <script type="module" src="../assets/js/main.js"></script>
+    
+    <!-- GSAP Initialization -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.to('.reveal-up', {
+                opacity: 1,
+                y: 0,
+                duration: 1.5,
+                ease: 'power4.out',
+                startAt: { y: 60 }
+            });
+        });
+    </script>
+</body>
+</html>

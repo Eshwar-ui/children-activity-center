@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://example.com/brightsteps/pages/index.html</loc></url>
+  <url><loc>https://example.com/brightsteps/pages/index-2.html</loc></url>
+  <url><loc>https://example.com/brightsteps/pages/about.html</loc></url>
+  <url><loc>https://example.com/brightsteps/pages/services.html</loc></url>
+  <url><loc>https://example.com/brightsteps/pages/blog.html</loc></url>
+  <url><loc>https://example.com/brightsteps/pages/contact.html</loc></url>
+  <url><loc>https://example.com/brightsteps/pages/login.html</loc></url>
+  <url><loc>https://example.com/brightsteps/pages/signup.html</loc></url>
+  <url><loc>https://example.com/brightsteps/pages/dashboard-user.html</loc></url>
+  <url><loc>https://example.com/brightsteps/pages/dashboard-admin.html</loc></url>
+</urlset>

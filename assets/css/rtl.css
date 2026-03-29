@@ -1,0 +1,33 @@
+/* SECTION: RTL Direction Overrides */
+:root[dir="rtl"] body {
+  direction: rtl;
+}
+
+:root[dir="rtl"] .submenu {
+  padding-left: 0;
+  padding-right: var(--space-4);
+}
+
+:root[dir="rtl"] .metric-list li,
+:root[dir="rtl"] .chart-label,
+:root[dir="rtl"] .contact-item,
+:root[dir="rtl"] .timeline-item,
+:root[dir="rtl"] .message-item,
+:root[dir="rtl"] .settings-item,
+:root[dir="rtl"] .avatar-row,
+:root[dir="rtl"] .checkbox,
+:root[dir="rtl"] .button-group,
+:root[dir="rtl"] .header-actions,
+:root[dir="rtl"] .topbar-actions,
+:root[dir="rtl"] .badge-row,
+:root[dir="rtl"] .footer-bottom {
+  flex-direction: row-reverse;
+}
+
+@media (min-width: 1024px) {
+  :root[dir="rtl"] .submenu {
+    left: auto;
+    right: 0;
+    padding-right: var(--space-3);
+  }
+}

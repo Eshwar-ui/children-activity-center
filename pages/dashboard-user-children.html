@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Children | Family Portal</title>
+
+    <!-- Local Design System CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    
+    <!-- Tailwind Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../tailwind.config.js"></script>
+
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- Global Theme Handler -->
+    <script src="../assets/js/theme-handler.js"></script>
+
+    <style>
+        .sidebar-link.active {
+            background: rgba(var(--primary-rgb), 0.1);
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .reveal-up { opacity: 0; }
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+        @media (max-width: 1024px) {
+            .dashboard-container { grid-template-columns: 1fr; }
+            .sidebar {
+                position: fixed;
+                left: -280px;
+                top: 0;
+                z-index: 50;
+                transition: left 0.3s ease-in-out;
+            }
+            .sidebar.active { left: 0; }
+        }
+    </style>
+</head>
+<body class="bg-neutral-50 text-neutral-800 antialiased font-sans dark:bg-neutral-900 dark:text-neutral-100 overflow-x-hidden">
+
+    <div class="dashboard-container">
+        <!-- SIDEBAR -->
+        <aside id="sidebar" class="sidebar bg-white dark:bg-neutral-800 border-r border-neutral-200 dark:border-neutral-700 w-[280px] h-screen flex flex-col transition-colors duration-500">
+            <div class="p-8 space-y-12 flex-grow overflow-y-auto">
+                <div class="flex items-center justify-between">
+                    <a href="../index.html" class="block">
+                        <img src="../assets/images/ui/logo.svg" alt="BrightSteps logo" class="h-8 dark:invert">
+                    </a>
+                    <button id="sidebar-close" class="lg:hidden p-2 text-neutral-400 hover:text-primary transition-colors">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
+                </div>
+                
+                <nav class="space-y-2">
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-neutral-400 ps-4 mb-4">Portal Home</p>
+                    <a href="dashboard-user.html" class="sidebar-link flex items-center space-x-3 space-x-reverse text-neutral-500 hover:bg-neutral-50 dark:hover:bg-neutral-700 hover:text-primary px-4 py-3 rounded-xl transition-all font-medium">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                        <span>Overview</span>
+                    </a>
+                    <a href="dashboard-user-calendar.html" class="sidebar-link flex items-center space-x-3 space-x-reverse text-neutral-500 hover:bg-neutral-50 dark:hover:bg-neutral-700 hover:text-primary px-4 py-3 rounded-xl transition-all font-medium">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <span>Calendar</span>
+                    </a>
+                    <a href="dashboard-user-children.html" class="sidebar-link active flex items-center space-x-3 space-x-reverse px-4 py-3 rounded-xl transition-all">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        <span>My Children</span>
+                    </a>
+                    <a href="dashboard-user-billing.html" class="sidebar-link flex items-center space-x-3 space-x-reverse text-neutral-500 hover:bg-neutral-50 dark:hover:bg-neutral-700 hover:text-primary px-4 py-3 rounded-xl transition-all font-medium">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m4 0h1m-7 4h12a2 2 0 002-2V5a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        <span>Billing</span>
+                    </a>
+                </nav>
+            </div>
+            
+            <div class="p-8 border-t border-neutral-100 dark:border-neutral-700">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-primary/20 text-primary rounded-full flex items-center justify-center font-bold text-xs uppercase">SJ</div>
+                    <div class="flex-grow min-w-0">
+                        <p class="text-xs font-bold text-neutral-800 dark:text-neutral-50 truncate">Sarah Jenkins</p>
+                        <p class="text-[10px] text-neutral-400 uppercase tracking-widest font-bold">Parent Portal</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="flex-grow p-8 lg:p-12 space-y-12 overflow-y-auto h-screen relative">
+            
+            <!-- MOBILE HEADER (Visible only on small screens) -->
+            <div class="lg:hidden flex items-center justify-between mb-8">
+                <button id="dashboard-toggle" class="p-3 bg-white dark:bg-neutral-800 rounded-2xl shadow-sm border border-neutral-100 dark:border-neutral-700 text-neutral-500 dark:text-neutral-400">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+                </button>
+                <a href="../index.html">
+                    <img src="../assets/images/ui/logo.svg" alt="BrightSteps" class="h-8 dark:invert opacity-80">
+                </a>
+                <div class="w-12"></div> <!-- Spacer for balance -->
+            </div>
+
+            <!-- HEADER -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 reveal-up mt-4 lg:mt-0">
+                <div class="space-y-1">
+                    <h1 class="text-3xl font-extrabold tracking-tight dark:text-neutral-50">Children Profiles.</h1>
+                    <p class="text-neutral-500 dark:text-neutral-400 text-sm">Managing Maya and Leo's creative journey at Austin Campus.</p>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <div class="flex bg-white dark:bg-neutral-800 p-1.5 rounded-2xl border border-neutral-100 dark:border-neutral-700 shadow-sm">
+                        <button onclick="window.toggleTheme()" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-all text-neutral-500 dark:text-neutral-400" title="Toggle Dark Mode">
+                            <svg class="h-5 w-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 5a7 7 0 100 14 7 7 0 000-14z"/></svg>
+                            <svg class="h-5 w-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                        </button>
+                        <button onclick="window.toggleDirection()" class="px-3 text-[10px] font-black uppercase tracking-widest text-neutral-400 hover:text-primary transition-all" title="Toggle RTL/LTR">
+                            RTL
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <button class="bg-primary text-white text-sm font-bold px-6 py-3.5 rounded-2xl shadow-xl shadow-primary/20 hover:shadow-2xl hover:-translate-y-0.5 transition-all">
+                Register New Child
+            </button>
+
+            <!-- CHILDREN PROFILES -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 reveal-up">
+                <!-- CHILD 1 - MAYA -->
+                <div class="bg-white dark:bg-neutral-800 p-10 rounded-[3rem] border border-neutral-100 dark:border-neutral-700 shadow-premium space-y-10 group overflow-hidden relative">
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+                    
+                    <div class="flex items-center space-x-6">
+                        <div class="w-24 h-24 rounded-3xl bg-primary/10 flex items-center justify-center text-3xl font-black text-primary">MJ</div>
+                        <div class="space-y-1">
+                            <h2 class="text-2xl font-black dark:text-neutral-50 tracking-tight">Maya Jenkins</h2>
+                            <p class="text-xs text-neutral-400 font-bold uppercase tracking-widest italic decoration-primary/20 underline underline-offset-4 leading-loose">8 Years Old • Rhythm & Focus Track</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center text-[10px] font-bold uppercase tracking-widest text-neutral-400">
+                             <span>Current Track Mastery</span>
+                             <span class="text-primary italic font-black">74% Complete</span>
+                        </div>
+                        <div class="h-3 bg-neutral-100 dark:bg-neutral-900 rounded-full overflow-hidden">
+                             <div class="h-full bg-primary w-[74%] shadow-lg shadow-primary/20 animate-pulse-slow"></div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-black uppercase tracking-widest text-neutral-800 dark:text-neutral-100 italic">Active Enrolments</h4>
+                        <div class="space-y-3">
+                             <div class="p-4 bg-neutral-50 dark:bg-neutral-900 rounded-2xl border border-neutral-100 dark:border-neutral-700 flex justify-between items-center group/item hover:border-primary/50 transition-all cursor-default">
+                                  <div class="flex items-center space-x-3">
+                                       <span class="w-2 h-2 rounded-full bg-primary"></span>
+                                       <span class="text-sm font-bold dark:text-neutral-200">Advanced Percussion (Piano Roots)</span>
+                                  </div>
+                                  <span class="text-[10px] text-neutral-400 group-hover/item:text-primary font-bold">Lvl 3</span>
+                             </div>
+                             <div class="p-4 bg-neutral-50 dark:bg-neutral-900 rounded-2xl border border-neutral-100 dark:border-neutral-700 flex justify-between items-center group/item hover:border-accent/50 transition-all cursor-default">
+                                  <div class="flex items-center space-x-3">
+                                       <span class="w-2 h-2 rounded-full bg-accent"></span>
+                                       <span class="text-sm font-bold dark:text-neutral-200">Mindful Rhythm Meditation</span>
+                                  </div>
+                                  <span class="text-[10px] text-neutral-400 group-hover/item:text-accent font-bold">Lvl 1</span>
+                             </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 border-t border-neutral-50 dark:border-neutral-700 flex gap-4">
+                         <button class="flex-grow py-4 bg-primary text-white text-xs font-black rounded-2xl shadow-premium hover:shadow-2xl transition-all">Daily Log</button>
+                         <button class="px-6 py-4 bg-neutral-100 dark:bg-neutral-900 text-neutral-500 rounded-2xl hover:text-primary transition-all">
+                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+                         </button>
+                    </div>
+                </div>
+
+                <!-- CHILD 2 - LEO -->
+                <div class="bg-white dark:bg-neutral-800 p-10 rounded-[3rem] border border-neutral-100 dark:border-neutral-700 shadow-premium space-y-10 group overflow-hidden relative">
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-accent/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+
+                    <div class="flex items-center space-x-6">
+                        <div class="w-24 h-24 rounded-3xl bg-accent/10 flex items-center justify-center text-3xl font-black text-accent">LJ</div>
+                        <div class="space-y-1">
+                            <h2 class="text-2xl font-black dark:text-neutral-50 tracking-tight">Leo Jenkins</h2>
+                            <p class="text-xs text-neutral-400 font-bold uppercase tracking-widest italic decoration-accent/20 underline underline-offset-4 leading-loose">6 Years Old • Visual & Arena Track</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center text-[10px] font-bold uppercase tracking-widest text-neutral-400">
+                             <span>Current Track Mastery</span>
+                             <span class="text-accent italic font-black">28% Complete</span>
+                        </div>
+                        <div class="h-3 bg-neutral-100 dark:bg-neutral-900 rounded-full overflow-hidden">
+                             <div class="h-full bg-accent w-[28%] shadow-lg shadow-accent/20"></div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-black uppercase tracking-widest text-neutral-800 dark:text-neutral-100 italic">Active Enrolments</h4>
+                        <div class="space-y-3">
+                             <div class="p-4 bg-neutral-50 dark:bg-neutral-900 rounded-2xl border border-neutral-100 dark:border-neutral-700 flex justify-between items-center group/item hover:border-cyan-500/50 transition-all cursor-default">
+                                  <div class="flex items-center space-x-3">
+                                       <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
+                                       <span class="text-sm font-bold dark:text-neutral-200">Arena Agility (Parkour Basics)</span>
+                                  </div>
+                                  <span class="text-[10px] text-neutral-400 group-hover/item:text-cyan-500 font-bold">Lvl 1</span>
+                             </div>
+                             <div class="p-4 bg-neutral-50 dark:bg-neutral-900 rounded-2xl border border-neutral-100 dark:border-neutral-700 flex justify-between items-center group/item hover:border-accent/50 transition-all cursor-default text-neutral-400 opacity-60">
+                                  <div class="flex items-center space-x-3">
+                                       <span class="w-2 h-2 rounded-full bg-neutral-400"></span>
+                                       <span class="text-sm font-bold">Color Studio (Pending start)</span>
+                                  </div>
+                                  <span class="text-[10px] font-bold uppercase">SEP 02</span>
+                             </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 border-t border-neutral-50 dark:border-neutral-700 flex gap-4">
+                         <button class="flex-grow py-4 bg-accent text-white text-xs font-black rounded-2xl shadow-premium hover:shadow-2xl transition-all">Daily Log</button>
+                         <button class="px-6 py-4 bg-neutral-100 dark:bg-neutral-900 text-neutral-500 rounded-2xl hover:text-accent transition-all">
+                             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+                         </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- GSAP Initialization & Dashboard Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Reveal animations
+            gsap.to('.reveal-up', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                stagger: 0.15,
+                ease: 'power3.out',
+                startAt: { y: 30 }
+            });
+
+            // Mobile Menu Toggle
+            const toggle = document.getElementById('dashboard-toggle');
+            const sidebar = document.getElementById('sidebar');
+            const closeBtn = document.getElementById('sidebar-close');
+
+            if (toggle && sidebar) {
+                toggle.addEventListener('click', () => {
+                    sidebar.classList.add('active');
+                    // Add backdrop
+                    const backdrop = document.createElement('div');
+                    backdrop.id = 'drawer-backdrop';
+                    backdrop.className = 'fixed inset-0 bg-black/50 z-[45] lg:hidden';
+                    document.body.appendChild(backdrop);
+                    
+                    backdrop.addEventListener('click', () => {
+                        sidebar.classList.remove('active');
+                        backdrop.remove();
+                    });
+                });
+            }
+
+            if (closeBtn && sidebar) {
+                closeBtn.addEventListener('click', () => {
+                    sidebar.classList.remove('active');
+                    document.getElementById('drawer-backdrop')?.remove();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

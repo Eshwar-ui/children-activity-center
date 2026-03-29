@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Families Management | Admin Dashboard</title>
+
+    <!-- Local Design System CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    
+    <!-- Tailwind Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../tailwind.config.js"></script>
+
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- Global Theme Handler -->
+    <script src="../assets/js/theme-handler.js"></script>
+
+    <style>
+        .sidebar-link.active {
+            background: rgba(var(--primary-rgb), 0.1);
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .reveal-up { opacity: 0; }
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body class="bg-neutral-50 text-neutral-800 antialiased font-sans dark:bg-neutral-900 dark:text-neutral-100 overflow-x-hidden">
+
+    <div class="dashboard-container">
+        <!-- SIDEBAR -->
+        <aside id="sidebar" class="sidebar bg-white dark:bg-neutral-800 border-r border-neutral-200 dark:border-neutral-700 w-[280px] h-screen flex flex-col transition-colors duration-500">
+            <div class="p-8 space-y-12 flex-grow overflow-y-auto">
+                <div class="flex items-center justify-between">
+                    <a href="../index.html" class="block">
+                        <img src="../assets/images/ui/logo.svg" alt="BrightSteps logo" class="h-8 dark:invert">
+                    </a>
+                    <button id="sidebar-close" class="lg:hidden p-2 text-neutral-400 hover:text-primary transition-colors">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
+                </div>
+                
+                <nav class="space-y-2">
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-neutral-400 ps-4 mb-4">Administration</p>
+                    <a href="dashboard-admin.html" class="sidebar-link flex items-center space-x-3 space-x-reverse text-neutral-500 hover:bg-neutral-50 dark:hover:bg-neutral-700 hover:text-primary px-4 py-3 rounded-xl transition-all font-medium">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        <span>Insights</span>
+                    </a>
+                    <a href="dashboard-admin-families.html" class="sidebar-link active flex items-center space-x-3 space-x-reverse px-4 py-3 rounded-xl transition-all">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                        <span>Families</span>
+                    </a>
+                    <a href="dashboard-admin-tracks.html" class="sidebar-link flex items-center space-x-3 space-x-reverse text-neutral-500 hover:bg-neutral-50 dark:hover:bg-neutral-700 hover:text-primary px-4 py-3 rounded-xl transition-all font-medium">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                        <span>Tracks</span>
+                    </a>
+                    <a href="dashboard-admin-financials.html" class="sidebar-link flex items-center space-x-3 space-x-reverse text-neutral-500 hover:bg-neutral-50 dark:hover:bg-neutral-700 hover:text-primary px-4 py-3 rounded-xl transition-all font-medium">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <span>Financials</span>
+                    </a>
+                </nav>
+            </div>
+            
+            <div class="p-8 border-t border-neutral-100 dark:border-neutral-700">
+                <div class="flex items-center space-x-3 text-neutral-500">
+                    <div class="w-10 h-10 bg-neutral-800 dark:bg-neutral-100 text-white dark:text-neutral-900 rounded-full flex items-center justify-center font-bold text-xs uppercase">AD</div>
+                    <div class="flex-grow min-w-0">
+                        <p class="text-xs font-bold text-neutral-800 dark:text-neutral-50 truncate">Campus Admin</p>
+                        <p class="text-[10px] text-neutral-400 uppercase tracking-widest font-bold">Full Access</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="flex-grow p-8 lg:p-12 space-y-12 overflow-y-auto h-screen relative">
+            
+            <!-- MOBILE HEADER (Visible only on small screens) -->
+            <div class="lg:hidden flex items-center justify-between mb-8">
+                <button id="dashboard-toggle" class="p-3 bg-white dark:bg-neutral-800 rounded-2xl shadow-sm border border-neutral-100 dark:border-neutral-700 text-neutral-500 dark:text-neutral-400">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+                </button>
+                <a href="../index.html">
+                    <img src="../assets/images/ui/logo.svg" alt="BrightSteps" class="h-8 dark:invert opacity-80">
+                </a>
+                <div class="w-12"></div> <!-- Spacer for balance -->
+            </div>
+
+            <!-- HEADER -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 reveal-up mt-4 lg:mt-0">
+                <div class="space-y-1">
+                    <h1 class="text-3xl font-extrabold tracking-tight dark:text-neutral-50">Austin Families.</h1>
+                    <p class="text-neutral-500 dark:text-neutral-400 text-sm">Managing 124 active family units across the campus.</p>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <div class="flex bg-white dark:bg-neutral-800 p-1.5 rounded-2xl border border-neutral-100 dark:border-neutral-700 shadow-sm">
+                        <button onclick="window.toggleTheme()" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-all text-neutral-500 dark:text-neutral-400" title="Toggle Dark Mode">
+                            <svg class="h-5 w-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 5a7 7 0 100 14 7 7 0 000-14z"/></svg>
+                            <svg class="h-5 w-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                        </button>
+                        <button onclick="window.toggleDirection()" class="px-3 text-[10px] font-black uppercase tracking-widest text-neutral-400 hover:text-primary transition-all" title="Toggle RTL/LTR">
+                            RTL
+                        </button>
+                    </div>
+                    <button class="bg-primary text-white text-sm font-bold px-6 py-3.5 rounded-2xl shadow-xl shadow-primary/20 hover:shadow-2xl hover:-translate-y-0.5 transition-all">
+                        Register New Family
+                    </button>
+                </div>
+            </div>
+
+            <!-- FAMILY FILTERS -->
+            <div class="flex flex-wrap gap-4 reveal-up">
+                <button class="px-6 py-2.5 bg-primary text-white text-xs font-bold rounded-full shadow-lg shadow-primary/20">All Families</button>
+                <button class="px-6 py-2.5 bg-white dark:bg-neutral-800 text-neutral-500 text-xs font-bold rounded-full border border-neutral-100 dark:border-neutral-700 hover:bg-neutral-50 transition-all">Active Enrollments</button>
+                <button class="px-6 py-2.5 bg-white dark:bg-neutral-800 text-neutral-500 text-xs font-bold rounded-full border border-neutral-100 dark:border-neutral-700 hover:bg-neutral-50 transition-all">Pending Paperwork</button>
+                <button class="px-6 py-2.5 bg-white dark:bg-neutral-800 text-neutral-500 text-xs font-bold rounded-full border border-neutral-100 dark:border-neutral-700 hover:bg-neutral-50 transition-all">Alumni</button>
+            </div>
+
+            <!-- FAMILY GRID -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal-up">
+                <!-- FAMILY CARD -->
+                <div class="bg-white dark:bg-neutral-800 p-8 rounded-[2.5rem] border border-neutral-100 dark:border-neutral-700 shadow-sm hover:shadow-premium transition-all group overflow-hidden relative">
+                    <div class="absolute top-0 right-0 p-6">
+                        <span class="px-3 py-1 bg-green-500/10 text-green-500 text-[10px] font-black rounded-full">ACTIVE</span>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center font-bold text-xl text-primary">SJ</div>
+                            <div class="space-y-0.5 text-left">
+                                <h3 class="text-lg font-black dark:text-neutral-50 leading-tight">Sarah Jenkins</h3>
+                                <p class="text-[10px] text-neutral-400 uppercase font-bold tracking-widest">Joined Aug 2024</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-neutral-500">Children</span>
+                                <span class="font-bold dark:text-neutral-300">Maya, Leo</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-neutral-500">Active Tracks</span>
+                                <div class="flex gap-1">
+                                    <span class="w-2 h-2 rounded-full bg-primary" title="Rhythm"></span>
+                                    <span class="w-2 h-2 rounded-full bg-accent" title="Color"></span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-neutral-500">Next Class</span>
+                                <span class="font-bold text-primary">Tomorrow, 4:30 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 flex gap-3">
+                            <button class="flex-grow bg-neutral-50 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-100 py-3 rounded-xl text-xs font-bold hover:bg-neutral-100 transition-all border border-neutral-100 dark:border-neutral-700">View Profile</button>
+                            <button class="w-12 h-12 flex items-center justify-center bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl hover:text-primary transition-all">
+                                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAMILY CARD 2 -->
+                <div class="bg-white dark:bg-neutral-800 p-8 rounded-[2.5rem] border border-neutral-100 dark:border-neutral-700 shadow-sm hover:shadow-premium transition-all group overflow-hidden relative">
+                    <div class="absolute top-0 right-0 p-6">
+                        <span class="px-3 py-1 bg-yellow-500/10 text-yellow-500 text-[10px] font-black rounded-full uppercase">Pending Payment</span>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center font-bold text-xl text-accent">RT</div>
+                            <div class="space-y-0.5 text-left">
+                                <h3 class="text-lg font-black dark:text-neutral-50 leading-tight">Robert Taylor</h3>
+                                <p class="text-[10px] text-neutral-400 uppercase font-bold tracking-widest">Joined July 2024</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-neutral-500">Children</span>
+                                <span class="font-bold dark:text-neutral-300">Sophie</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-neutral-500">Active Tracks</span>
+                                <div class="flex gap-1">
+                                    <span class="w-2 h-2 rounded-full bg-accent" title="Color"></span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-neutral-500">Next Class</span>
+                                <span class="font-bold text-primary">Friday, 5:00 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 flex gap-3">
+                            <button class="flex-grow bg-neutral-50 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-100 py-3 rounded-xl text-xs font-bold hover:bg-neutral-100 transition-all border border-neutral-100 dark:border-neutral-700">View Profile</button>
+                            <button class="w-12 h-12 flex items-center justify-center bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl hover:text-primary transition-all">
+                                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAMILY CARD 3 -->
+                <div class="bg-white dark:bg-neutral-800 p-8 rounded-[2.5rem] border border-neutral-100 dark:border-neutral-700 shadow-sm hover:shadow-premium transition-all group overflow-hidden relative">
+                    <div class="absolute top-0 right-0 p-6">
+                        <span class="px-3 py-1 bg-primary/10 text-primary text-[10px] font-black rounded-full uppercase">Onboarding</span>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-14 h-14 rounded-2xl bg-neutral-100 dark:bg-neutral-700 flex items-center justify-center font-bold text-xl text-neutral-500">AM</div>
+                            <div class="space-y-0.5 text-left">
+                                <h3 class="text-lg font-black dark:text-neutral-50 leading-tight">Alice Moore</h3>
+                                <p class="text-[10px] text-neutral-400 uppercase font-bold tracking-widest">Joined Today</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-neutral-500">Children</span>
+                                <span class="font-bold dark:text-neutral-300">Charlie</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-neutral-500">Active Tracks</span>
+                                <div class="flex gap-1">
+                                    <span class="text-[10px] italic text-neutral-400 font-medium tracking-wide">Waiting Selection</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-neutral-500">Status</span>
+                                <span class="font-bold text-accent italic">Awaiting Docs</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 flex gap-3">
+                            <button class="flex-grow bg-neutral-50 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-100 py-3 rounded-xl text-xs font-bold hover:bg-neutral-100 transition-all border border-neutral-100 dark:border-neutral-700">View Profile</button>
+                            <button class="w-12 h-12 flex items-center justify-center bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl hover:text-primary transition-all">
+                                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PAGINATION -->
+            <div class="flex justify-between items-center reveal-up">
+                <p class="text-xs text-neutral-500">Showing <span class="font-bold">3</span> of <span class="font-bold">248</span> families</p>
+                <div class="flex gap-2">
+                    <button class="w-10 h-10 flex items-center justify-center bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl text-neutral-400 hover:text-primary transition-all">
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    </button>
+                    <button class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-xl font-bold text-xs ring-4 ring-primary/20">1</button>
+                    <button class="w-10 h-10 flex items-center justify-center bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl font-bold text-xs hover:text-primary transition-all">2</button>
+                    <button class="w-10 h-10 flex items-center justify-center bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl font-bold text-xs hover:text-primary transition-all">3</button>
+                    <button class="w-10 h-10 flex items-center justify-center bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl text-neutral-400 hover:text-primary transition-all">
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- GSAP Initialization & Dashboard Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Reveal animations
+            gsap.to('.reveal-up', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                stagger: 0.15,
+                ease: 'power3.out',
+                startAt: { y: 30 }
+            });
+
+            // Mobile Menu Toggle
+            const toggle = document.getElementById('dashboard-toggle');
+            const sidebar = document.getElementById('sidebar');
+            const closeBtn = document.getElementById('sidebar-close');
+
+            if (toggle && sidebar) {
+                toggle.addEventListener('click', () => {
+                    sidebar.classList.add('active');
+                    // Add backdrop
+                    const backdrop = document.createElement('div');
+                    backdrop.id = 'drawer-backdrop';
+                    backdrop.className = 'fixed inset-0 bg-black/50 z-[45] lg:hidden';
+                    document.body.appendChild(backdrop);
+                    
+                    backdrop.addEventListener('click', () => {
+                        sidebar.classList.remove('active');
+                        backdrop.remove();
+                    });
+                });
+            }
+
+            if (closeBtn && sidebar) {
+                closeBtn.addEventListener('click', () => {
+                    sidebar.classList.remove('active');
+                    document.getElementById('drawer-backdrop')?.remove();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

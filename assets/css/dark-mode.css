@@ -1,0 +1,44 @@
+/* SECTION: Dark Theme Overrides */
+:root[data-theme="dark"] {
+  --color-bg: #081421;
+  --color-surface: #102033;
+  --color-surface-soft: #18283d;
+  --color-surface-alt: #112c43;
+  --color-text: #eef4fb;
+  --color-muted: #a8bfd2;
+  --color-border: #21364c;
+  --shadow-sm: 0 16px 32px rgba(0, 0, 0, 0.28);
+}
+
+:root[data-theme="dark"] .site-header,
+:root[data-theme="dark"] .site-nav,
+:root[data-theme="dark"] .icon-button,
+:root[data-theme="dark"] .toggle-button,
+:root[data-theme="dark"] .button-secondary,
+:root[data-theme="dark"] .social-button,
+:root[data-theme="dark"] .form-field input,
+:root[data-theme="dark"] .form-field select,
+:root[data-theme="dark"] .form-field textarea,
+:root[data-theme="dark"] .topbar-card,
+:root[data-theme="dark"] .table-card,
+:root[data-theme="dark"] .timeline-card,
+:root[data-theme="dark"] .settings-card,
+:root[data-theme="dark"] .message-card,
+:root[data-theme="dark"] .dashboard-toggle {
+  background: rgba(9, 20, 34, 0.92);
+  color: var(--color-text);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+:root[data-theme="dark"] .site-footer,
+:root[data-theme="dark"] .dashboard-sidebar {
+  background: #040c15;
+}
+
+:root[data-theme="dark"] .dashboard-layout {
+  background: #081421;
+}
+
+:root[data-theme="dark"] .chart-track {
+  background: #1d3146;
+}

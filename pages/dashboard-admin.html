@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | BrightSteps Kids Activity Center</title>
+
+    <meta name="description" content="Manage the BrightSteps campus with the Admin Dashboard. Review enrollments, track capacity, and more.">
+
+    <!-- Required Icons -->
+    <link rel="icon" type="image/svg+xml" href="../assets/images/ui/favicon.svg">
+
+    <!-- Local Design System CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    <link rel="stylesheet" href="../assets/css/rtl.css">
+    
+    <!-- Tailwind Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../tailwind.config.js"></script>
+
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- Global Theme Handler -->
+    <script src="../assets/js/theme-handler.js"></script>
+
+    <style>
+        .sidebar-link.active {
+            background: rgba(var(--primary-rgb), 0.1);
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .reveal-up { opacity: 0; }
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+        @media (max-width: 1024px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                transform: translateX(-100%);
+                position: fixed;
+                z-index: 100;
+                transition: transform 0.3s ease;
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-neutral-50 text-neutral-800 antialiased font-sans dark:bg-neutral-900 dark:text-neutral-100 overflow-x-hidden">
+
+    <div class="dashboard-container">
+        <!-- SECTION: Admin Sidebar Navigation -->
+        <!-- TODO: Add live indicators for 'Families' if new applications are pending -->
+        <aside id="sidebar" class="sidebar bg-white dark:bg-neutral-800 border-r border-neutral-200 dark:border-neutral-700 w-[280px] h-screen flex flex-col transition-colors duration-500">
+            <div class="p-8 space-y-12 flex-grow overflow-y-auto">
+                <div class="flex items-center justify-between">
+                    <a href="../index.html" class="block">
+                        <img src="../assets/images/ui/logo.svg" alt="BrightSteps logo" class="h-8 dark:invert">
+                    </a>
+                    <button id="sidebar-close" class="lg:hidden p-2 text-neutral-400 hover:text-primary transition-colors">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
+                </div>
+                
+                <nav class="space-y-2">
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-neutral-400 ps-4 mb-4">Administration</p>
+                    <a href="dashboard-admin.html" class="sidebar-link active flex items-center space-x-3 space-x-reverse px-4 py-3 rounded-xl transition-all">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        <span>Insights</span>
+                    </a>
+                    <a href="dashboard-admin-families.html" class="sidebar-link flex items-center space-x-3 space-x-reverse text-neutral-500 hover:bg-neutral-50 dark:hover:bg-neutral-700 hover:text-primary px-4 py-3 rounded-xl transition-all font-medium">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                        <span>Families</span>
+                    </a>
+                    <a href="dashboard-admin-tracks.html" class="sidebar-link flex items-center space-x-3 space-x-reverse text-neutral-500 hover:bg-neutral-50 dark:hover:bg-neutral-700 hover:text-primary px-4 py-3 rounded-xl transition-all font-medium">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                        <span>Tracks</span>
+                    </a>
+                    <a href="dashboard-admin-financials.html" class="sidebar-link flex items-center space-x-3 space-x-reverse text-neutral-500 hover:bg-neutral-50 dark:hover:bg-neutral-700 hover:text-primary px-4 py-3 rounded-xl transition-all font-medium">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <span>Financials</span>
+                    </a>
+                </nav>
+            </div>
+            
+            <div class="p-8 border-t border-neutral-100 dark:border-neutral-700 space-y-6">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-neutral-800 dark:bg-neutral-100 text-white dark:text-neutral-900 rounded-full flex items-center justify-center font-bold text-xs uppercase">AD</div>
+                    <div class="flex-grow min-w-0">
+                        <p class="text-xs font-bold text-neutral-800 dark:text-neutral-50 truncate">Campus Admin</p>
+                        <p class="text-[10px] text-neutral-400 uppercase tracking-widest font-bold">Full Access</p>
+                    </div>
+                </div>
+                <!-- Theme toggle in sidebar -->
+                <div class="flex items-center justify-between bg-neutral-50 dark:bg-neutral-900 p-2 rounded-xl">
+                    <button id="theme-toggle" class="p-2 text-neutral-500 dark:text-neutral-400 hover:text-primary" aria-label="Toggle Theme">
+                         <svg id="theme-toggle-dark-icon" class="hidden w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                         <svg id="theme-toggle-light-icon" class="hidden w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    </button>
+                    <a href="login.html" class="p-2 text-neutral-400 hover:text-red-500 transition-colors">
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4-4H7a2 2 0 00-2 2v10a2 2 0 002 2h10"/></svg>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- SECTION: Admin Workspace -->
+        <main class="flex-grow p-8 lg:p-12 space-y-12 overflow-y-auto h-screen bg-neutral-50 dark:bg-neutral-900 transition-colors duration-500 relative">
+            
+            <!-- MOBILE HEADER (Visible only on small screens) -->
+            <div class="lg:hidden flex items-center justify-between mb-8">
+                <button id="dashboard-toggle" class="p-3 bg-white dark:bg-neutral-800 rounded-2xl shadow-sm border border-neutral-100 dark:border-neutral-700 text-neutral-500 dark:text-neutral-400">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+                </button>
+                <a href="../index.html">
+                    <img src="../assets/images/ui/logo.svg" alt="BrightSteps" class="h-8 dark:invert opacity-80">
+                </a>
+                <div class="w-12"></div> <!-- Spacer for balance -->
+            </div>
+
+            <!-- SECTION: Dashboard Pulse Header -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 reveal-up mt-4 lg:mt-0">
+                <div class="space-y-1">
+                    <h1 class="text-3xl font-extrabold tracking-tight dark:text-neutral-50">Campus Insights.</h1>
+                    <p class="text-neutral-500 dark:text-neutral-400 text-sm">Welcome back, Admin. Here's your Austin Campus pulse.</p>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <div class="flex bg-white dark:bg-neutral-800 p-1.5 rounded-2xl border border-neutral-100 dark:border-neutral-700 shadow-sm">
+                        <button onclick="window.toggleTheme()" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-all text-neutral-500 dark:text-neutral-400" title="Toggle Dark Mode">
+                            <svg class="h-5 w-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 5a7 7 0 100 14 7 7 0 000-14z"/></svg>
+                            <svg class="h-5 w-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                        </button>
+                        <button onclick="window.toggleDirection()" class="px-3 text-[10px] font-black uppercase tracking-widest text-neutral-400 hover:text-primary transition-all" title="Toggle RTL/LTR">
+                            RTL
+                        </button>
+                    </div>
+                    <button class="bg-primary text-white text-sm font-bold px-6 py-3.5 rounded-2xl shadow-xl shadow-primary/20 hover:shadow-2xl hover:-translate-y-0.5 transition-all">
+                        Daily Report
+                    </button>
+                </div>
+            </div>
+
+            <!-- SECTION: Campus Key Performance Indicators (KPIs) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 reveal-up">
+                <div class="bg-white dark:bg-neutral-800 p-8 rounded-[2rem] border border-neutral-100 dark:border-neutral-700 shadow-sm space-y-2">
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-neutral-400">Total Students</p>
+                    <div class="flex items-baseline space-x-2">
+                        <span class="text-4xl font-black dark:text-neutral-50">428</span>
+                        <span class="text-xs font-bold text-green-500">↑ 12%</span>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-neutral-800 p-8 rounded-[2rem] border border-neutral-100 dark:border-neutral-700 shadow-sm space-y-2">
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-neutral-400">Monthly Revenue</p>
+                    <div class="flex items-baseline space-x-2">
+                        <span class="text-4xl font-black dark:text-neutral-50">$18,240</span>
+                        <span class="text-xs font-bold text-neutral-400 italic">Target: $20k</span>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-neutral-800 p-8 rounded-[2rem] border border-neutral-100 dark:border-neutral-700 shadow-sm space-y-2">
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-neutral-400">Active Tracks</p>
+                    <div class="flex items-baseline space-x-2">
+                        <span class="text-4xl font-black dark:text-neutral-50">14</span>
+                        <span class="text-xs font-bold text-primary">Live</span>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-neutral-800 p-8 rounded-[2rem] border border-neutral-100 dark:border-neutral-700 shadow-sm space-y-2">
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-neutral-400">Campus Capacity</p>
+                    <div class="flex items-baseline space-x-2">
+                        <span class="text-4xl font-black dark:text-neutral-50">84%</span>
+                        <span class="text-xs font-bold text-accent">Healthy</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION: Enrollment Management Table -->
+            <!-- TODO: Add dynamic sorting and search functionality via a separate controller -->
+            <div class="bg-white dark:bg-neutral-800 rounded-[2.5rem] border border-neutral-100 dark:border-neutral-700 shadow-premium overflow-hidden reveal-up">
+                <div class="p-10 border-b border-neutral-50 dark:border-neutral-700 flex justify-between items-center">
+                    <h3 class="text-xl font-bold dark:text-neutral-50">Recent Enrollments</h3>
+                    <div class="flex space-x-4">
+                        <button class="text-xs font-bold text-neutral-400 uppercase tracking-widest px-4 py-2 hover:bg-neutral-50 dark:hover:bg-neutral-900 rounded-xl transition-all">Filter</button>
+                        <button class="text-xs font-bold text-primary uppercase tracking-widest px-4 py-2 bg-primary/10 rounded-xl transition-all">All Records</button>
+                    </div>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-neutral-50/50 dark:bg-neutral-900/50 text-[10px] font-bold uppercase tracking-tighter text-neutral-400">
+                                <th class="px-10 py-6">Family Name</th>
+                                <th class="px-10 py-6">Tracks</th>
+                                <th class="px-10 py-6">Date</th>
+                                <th class="px-10 py-6">Status</th>
+                                <th class="px-10 py-6 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-neutral-50 dark:divide-neutral-700">
+                            <tr class="group hover:bg-neutral-50/50 dark:hover:bg-neutral-900/50 transition-all duration-300">
+                                <td class="px-10 py-8">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center font-bold text-xs text-primary">SJ</div>
+                                        <div class="space-y-0.5">
+                                            <p class="text-sm font-bold dark:text-neutral-100">Sarah Jenkins</p>
+                                            <p class="text-[10px] text-neutral-400 uppercase font-bold tracking-widest">2 children</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-10 py-8">
+                                    <div class="flex space-x-2">
+                                        <span class="px-3 py-1 bg-primary/10 text-primary text-[10px] font-black rounded-full uppercase">RHYTHM</span>
+                                        <span class="px-3 py-1 bg-accent/10 text-accent text-[10px] font-black rounded-full uppercase">COLOR</span>
+                                    </div>
+                                </td>
+                                <td class="px-10 py-8">
+                                    <p class="text-sm text-neutral-500 font-medium">Aug 20, 2024</p>
+                                </td>
+                                <td class="px-10 py-8">
+                                    <span class="flex items-center space-x-2 text-green-500 font-black italic text-[10px]">
+                                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                                        <span>ACTIVE</span>
+                                    </span>
+                                </td>
+                                <td class="px-10 py-8 text-right">
+                                    <button class="bg-white dark:bg-neutral-700 border border-neutral-200 dark:border-neutral-600 px-6 py-2.5 rounded-xl text-xs font-bold hover:shadow-lg hover:-translate-y-0.5 transition-all opacity-0 group-hover:opacity-100">Manage</button>
+                                </td>
+                            </tr>
+                            <tr class="group hover:bg-neutral-50/50 dark:hover:bg-neutral-900/50 transition-all duration-300">
+                                <td class="px-10 py-8">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center font-bold text-xs text-accent">MK</div>
+                                        <div class="space-y-0.5">
+                                            <p class="text-sm font-bold dark:text-neutral-100">Mark Kowalski</p>
+                                            <p class="text-[10px] text-neutral-400 uppercase font-bold tracking-widest">1 child</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-10 py-8">
+                                    <span class="px-3 py-1 bg-secondary/10 text-secondary text-[10px] font-black rounded-full uppercase">ARENA</span>
+                                </td>
+                                <td class="px-10 py-8">
+                                    <p class="text-sm text-neutral-500 font-medium">Aug 18, 2024</p>
+                                </td>
+                                <td class="px-10 py-8">
+                                    <span class="flex items-center space-x-2 text-neutral-300 font-black italic text-[10px]">
+                                        <span class="w-1.5 h-1.5 bg-neutral-300 rounded-full"></span>
+                                        <span>GRADUATED</span>
+                                    </span>
+                                </td>
+                                <td class="px-10 py-8 text-right">
+                                    <button class="bg-white dark:bg-neutral-700 border border-neutral-200 dark:border-neutral-600 px-6 py-2.5 rounded-xl text-xs font-bold hover:shadow-lg hover:-translate-y-0.5 transition-all opacity-0 group-hover:opacity-100">Manage</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MAIN JS -->
+    <script type="module" src="../assets/js/main.js"></script>
+    
+    <!-- GSAP Initialization -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.to('.reveal-up', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                stagger: 0.15,
+                ease: 'power3.out',
+                startAt: { y: 30 }
+            });
+        });
+    </script>
+</body>
+</html>

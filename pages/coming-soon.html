@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Tracks arriving | BrightSteps Kids Activity Center</title>
+
+    <meta name="description" content="We're expanding our Austin campus with new tracks soon. Get notified when we launch.">
+
+    <!-- Required Icons -->
+    <link rel="icon" type="image/svg+xml" href="../assets/images/ui/favicon.svg">
+
+    <!-- Local Design System CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    <link rel="stylesheet" href="../assets/css/rtl.css">
+    
+    <!-- Tailwind Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../tailwind.config.js"></script>
+
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <style>
+        .reveal-up { opacity: 0; }
+        .spinner {
+            animation: spin 30s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-neutral-50 text-neutral-800 antialiased font-sans dark:bg-neutral-900 dark:text-neutral-100 overflow-hidden">
+
+    <div class="min-h-screen flex flex-col items-center justify-center p-8 text-center bg-neutral-50 dark:bg-neutral-900 transition-colors duration-500 relative">
+        <!-- LOGO -->
+        <a href="../index.html" class="absolute top-12 z-20">
+            <img src="../assets/images/ui/logo.svg" alt="BrightSteps" class="h-10 dark:invert opacity-80 hover:opacity-100 transition-opacity">
+        </a>
+
+        <!-- BACKGROUND ELEMENT -->
+        <div class="absolute inset-0 flex items-center justify-center opacity-10 dark:opacity-20 pointer-events-none">
+             <div class="w-[40rem] h-[40rem] rounded-full border border-neutral-300 dark:border-neutral-700 spinner"></div>
+        </div>
+
+        <div class="space-y-12 reveal-up z-10">
+            <div class="space-y-8 max-w-lg mx-auto">
+                <div class="inline-block px-3 py-1 bg-primary/10 text-primary text-[10px] font-black rounded-full uppercase tracking-widest leading-none">Expanding Campus</div>
+                <h1 class="text-6xl font-black tracking-tighter dark:text-neutral-50">Discovery is <br>Preparing.</h1>
+                <p class="text-neutral-500 dark:text-neutral-400 font-medium">We're adding new creative and musical layers to the BrightSteps tracks. Be the first family to get access.</p>
+            </div>
+
+            <!-- Form -->
+            <form action="#" class="w-full max-w-sm mx-auto flex flex-col sm:flex-row gap-4">
+                <input type="email" placeholder="family@example.com" class="flex-grow px-6 py-5 bg-white dark:bg-neutral-800 border-b-2 border-neutral-100 dark:border-neutral-700 focus:border-primary transition-all outline-none text-sm font-medium dark:text-neutral-100 shadow-sm rounded-2xl" id="notification-email" required>
+                <button type="submit" class="bg-primary text-white font-black px-10 py-5 rounded-2xl shadow-xl shadow-primary/20 hover:shadow-2xl hover:-translate-y-1 transition-all text-xs uppercase tracking-widest whitespace-nowrap">
+                    Notify Me
+                </button>
+            </form>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 max-w-2xl mx-auto pt-8 border-t border-neutral-100 dark:border-neutral-800">
+                <div class="space-y-1">
+                    <p class="text-lg font-black dark:text-neutral-50" id="days">24</p>
+                    <p class="text-[10px] uppercase font-bold text-neutral-400">Days</p>
+                </div>
+                <div class="space-y-1">
+                    <p class="text-lg font-black dark:text-neutral-50" id="hours">12</p>
+                    <p class="text-[10px] uppercase font-bold text-neutral-400">Hours</p>
+                </div>
+                <div class="space-y-1">
+                    <p class="text-lg font-black dark:text-neutral-50" id="mins">45</p>
+                    <p class="text-[10px] uppercase font-bold text-neutral-400">Mins</p>
+                </div>
+                <div class="space-y-1">
+                    <p class="text-lg font-black dark:text-neutral-50" id="secs">08</p>
+                    <p class="text-[10px] uppercase font-bold text-neutral-400">Secs</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <p class="absolute bottom-12 text-[10px] uppercase font-bold tracking-[0.3em] text-neutral-400">&copy; 2024 BrightSteps Texas Campus</p>
+    </div>
+
+    <!-- MAIN JS -->
+    <script type="module" src="../assets/js/main.js"></script>
+    
+    <!-- GSAP Initialization -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.to('.reveal-up', {
+                opacity: 1,
+                y: 0,
+                duration: 1.5,
+                ease: 'power4.out',
+                startAt: { y: 60 }
+            });
+        });
+    </script>
+</body>
+</html>

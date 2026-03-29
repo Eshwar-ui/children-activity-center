@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrightSteps Kids Activity Center | Home</title>
+    <meta name="description" content="Discover music, art, and sports tracks at BrightSteps, Austin's premium kids activity center. Built for safe, confident growth.">
+
+    <!-- Required Icons -->
+    <link rel="icon" type="image/svg+xml" href="../assets/images/ui/favicon.svg">
+
+    <!-- OG + Twitter -->
+    <meta property="og:title" content="BrightSteps Kids Activity Center | Home">
+    <meta property="og:description" content="Discover music, art, and sports tracks at BrightSteps, Austin's premium kids activity center. Built for safe, confident growth.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="../assets/images/content/blog-creative.webp">
+    <meta property="og:url" content="https://example.com/brightsteps/pages/index.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="BrightSteps Kids Activity Center | Home">
+    <meta name="twitter:description" content="Discover music, art, and sports tracks at BrightSteps, Austin's premium kids activity center. Built for safe, confident growth.">
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "BrightSteps Kids Activity Center | Home",
+          "description": "Discover music, art, and sports tracks at BrightSteps, Austin's premium kids activity center. Built for safe, confident growth.",
+          "url": "https://example.com/brightsteps/pages/index.html",
+          "publisher": {
+            "@type": "Organization",
+            "name": "BrightSteps Kids Activity Center"
+          }
+        }
+    </script>
+
+    <!-- Local Design System CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    <link rel="stylesheet" href="../assets/css/rtl.css">
+
+    <!-- Tailwind Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../tailwind.config.js"></script>
+
+    <style>
+        .glass-header {
+            background: rgba(249, 249, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .organic-bg {
+            clip-path: ellipse(80% 50% at 50% 100%);
+        }
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(-10%); animation-timing-function: cubic-bezier(0.8,0,1,1); }
+            50% { transform: none; animation-timing-function: cubic-bezier(0,0,0.2,1); }
+        }
+        .animate-bounce-slow {
+            animation: bounce-slow 3s infinite;
+        }
+        .rounded-custom { border-radius: 12px; }
+    </style>
+</head>
+<body class="bg-neutral-50 text-neutral-800 antialiased font-sans dark:bg-neutral-900 dark:text-neutral-100 overflow-x-hidden">
+
+    <!-- SECTION: Header & Global Navigation -->
+    <!-- TODO: Update navigation links if moving to a specific sub-directory structure -->
+    <header class="fixed top-0 w-full z-50 bg-white/70 dark:bg-neutral-800/70 backdrop-blur-xl border-b border-white/20 dark:border-white/10 py-4 transition-all duration-300">
+        <div class="container mx-auto px-6 flex justify-between items-center text-neutral-600 dark:text-neutral-400">
+            <!-- Brand Logo -->
+            <a href="index.html" class="flex items-center space-x-2 group">
+                <img src="../assets/images/ui/logo.svg" alt="BrightSteps Logo" class="h-10 w-auto transition-transform group-hover:scale-105 dark:invert dark:opacity-90">
+            </a>
+            
+            <!-- Center: Desktop Navigation -->
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-semibold tracking-tight">
+                <!-- Home Dropdown -->
+                <div class="relative group">
+                    <button class="nav-link flex items-center space-x-1 py-2 hover:text-primary transition-colors focus:outline-none" aria-haspopup="true">
+                        <span>Home</span>
+                        <svg class="h-4 w-4 opacity-50 group-hover:rotate-180 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="absolute left-0 mt-2 w-48 bg-white/95 dark:bg-neutral-800/95 backdrop-blur-xl rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-none border border-neutral-100 dark:border-neutral-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left -translate-y-2 group-hover:translate-y-0 overflow-hidden z-50">
+                        <a href="index.html" class="block px-6 py-4 hover:bg-neutral-50 dark:hover:bg-neutral-700/50 hover:text-primary transition-colors border-b border-neutral-50 dark:border-neutral-700">Home Modern</a>
+                        <a href="index-2.html" class="block px-6 py-4 hover:bg-neutral-50 dark:hover:bg-neutral-700/50 hover:text-primary transition-colors">Home Creative</a>
+                    </div>
+                </div>
+                
+                <a href="about.html" class="nav-link hover:text-primary transition-colors py-2">About</a>
+                <a href="services.html" class="nav-link hover:text-primary transition-colors py-2">Programs</a>
+                <a href="blog.html" class="nav-link hover:text-primary transition-colors py-2">Journal</a>
+                <a href="contact.html" class="nav-link hover:text-primary transition-colors py-2">Contact</a>
+
+                <!-- Dashboard Dropdown -->
+                <div class="relative group">
+                    <button class="nav-link flex items-center space-x-1 py-2 hover:text-primary transition-colors focus:outline-none" aria-haspopup="true">
+                        <span>Dashboard</span>
+                        <svg class="h-4 w-4 opacity-50 group-hover:rotate-180 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="absolute left-0 mt-2 w-56 bg-white/95 dark:bg-neutral-800/95 backdrop-blur-xl rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-none border border-neutral-100 dark:border-neutral-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left -translate-y-2 group-hover:translate-y-0 overflow-hidden z-50">
+                        <a href="dashboard-admin.html" class="block px-6 py-4 hover:bg-neutral-50 dark:hover:bg-neutral-700/50 hover:text-primary transition-colors border-b border-neutral-50 dark:border-neutral-700">
+                            <span class="block text-sm font-bold dark:text-neutral-100">Admin Portal</span>
+                            <span class="text-[10px] text-neutral-400 uppercase tracking-tighter">Full Campus Control</span>
+                        </a>
+                        <a href="dashboard-user.html" class="block px-6 py-4 hover:bg-neutral-50 dark:hover:bg-neutral-700/50 hover:text-primary transition-colors">
+                            <span class="block text-sm font-bold dark:text-neutral-100">Parent Portal</span>
+                            <span class="text-[10px] text-neutral-400 uppercase tracking-tighter">Child Tracking & Payments</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- Right: Utility & CTA -->
+            <div class="hidden lg:flex items-center space-x-6 pl-8 border-l border-neutral-100 dark:border-neutral-700 ml-4">
+                <!-- Toggles Group -->
+                <div class="flex items-center bg-neutral-50 dark:bg-neutral-900 rounded-full px-1.5 py-1 border border-neutral-100 dark:border-neutral-700">
+                    <button id="theme-toggle" class="p-2 text-neutral-500 dark:text-neutral-400 hover:text-primary dark:hover:text-white hover:bg-white dark:hover:bg-neutral-800 rounded-full transition-all duration-300 shadow-sm hover:shadow-md" aria-label="Toggle Theme">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    </button>
+                    <button id="rtl-toggle" class="px-3 py-1.5 text-[10px] font-black uppercase tracking-wider text-neutral-400 hover:text-primary hover:bg-white dark:hover:bg-neutral-800 rounded-full transition-all duration-300" aria-label="Toggle RTL View">RTL</button>
+                </div>
+
+                <!-- CTA Button -->
+                <a href="signup.html" class="bg-primary text-white text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-full shadow-lg shadow-primary/20 hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                    Enroll Now
+                </a>
+            </div>
+            
+            <!-- Mobile Toggle -->
+            <div class="flex lg:hidden items-center">
+                <button id="nav-toggle" class="text-neutral-800 dark:text-neutral-100 p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors" aria-label="Toggle Mobile Menu">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24">
+        <!-- SECTION: Modern Hero Experience -->
+        <!-- TODO: Optimization - Ensure hero image (blog-creative.webp) is prioritized in the loading order -->
+        <section id="hero" class="relative pt-44 pb-32 overflow-hidden bg-neutral-50 dark:bg-neutral-900 transition-colors duration-500">
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="flex flex-col lg:flex-row items-center gap-16">
+                    <!-- Content Left -->
+                    <div class="lg:w-1/2 hero-content">
+                        <div class="inline-flex items-center space-x-2 bg-primary/10 px-4 py-2 rounded-full mb-8 border border-primary/10">
+                            <span class="w-1.5 h-1.5 bg-primary rounded-full animate-ping"></span>
+                            <span class="text-xs font-bold uppercase tracking-widest text-primary">Austin’s #1 Activity Hub</span>
+                        </div>
+                        
+                        <h1 class="text-6xl lg:text-8xl font-black leading-[0.95] tracking-tight mb-8 text-neutral-800 dark:text-neutral-50">
+                            Where Play <br>
+                            <span class="text-primary italic">Meets Purpose.</span>
+                        </h1>
+                        
+                        <p class="text-lg text-neutral-500 dark:text-neutral-400 mb-12 max-w-xl leading-relaxed">
+                            BrightSteps offers a curated collection of music, art, and athletic programs designed to nurture creativity and physical development in a premium, state-of-the-art environment.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
+                            <a href="signup.html" class="bg-primary text-white text-lg font-bold px-10 py-5 rounded-custom shadow-xl shadow-primary/30 hover:shadow-2xl hover:scale-[1.02] transition-all text-center">
+                                Claim 1 Month Trial
+                            </a>
+                            <a href="services.html" class="bg-transparent border-2 border-neutral-200 text-neutral-700 text-lg font-bold px-10 py-5 rounded-custom hover:bg-neutral-50 hover:border-neutral-300 transition-all text-center flex items-center justify-center space-x-2 group">
+                                <span>Browse Classes</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                            </a>
+                        </div>
+                        
+                        <div class="badge-row flex flex-wrap gap-4 pt-4">
+                            <div class="flex items-center space-x-2 text-sm text-neutral-400">
+                                <svg class="h-5 w-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                <span>Licensed Instructors</span>
+                            </div>
+                            <div class="flex items-center space-x-2 text-sm text-neutral-400">
+                                <svg class="h-5 w-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                <span>Supervised Safe Zones</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:w-1/2 hero-image-wrapper relative">
+                        <div class="relative rounded-2xl overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] transform rotate-1">
+                            <img src="../assets/images/content/blog-creative.webp" alt="Kids enjoying a learning moment together" class="w-full h-auto object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent"></div>
+                        </div>
+                        
+                        <!-- Decorative Elements -->
+                        <div class="floating-card absolute -bottom-10 -left-10 bg-white/90 backdrop-blur px-6 py-5 rounded-custom shadow-xl border border-white/40 space-y-1 z-20">
+                            <p class="text-[10px] uppercase font-bold text-primary tracking-widest">Next Open Enrollment</p>
+                            <p class="text-lg font-bold text-neutral-800">Aug 24 - Fall Term</p>
+                            <p class="text-xs text-neutral-400">12 Spots available today</p>
+                        </div>
+                        
+                        <div class="absolute -top-10 -right-10 bg-accent p-4 rounded-full shadow-lg text-white animate-bounce-slow z-20">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Organic Background Shape -->
+            <div class="absolute bottom-0 left-0 w-full h-[600px] bg-neutral-100 organic-bg -z-0"></div>
+        </section>
+
+        <!-- SECTION: Exploration Tracks (Primary Services) -->
+        <section id="tracks" class="py-32 bg-white dark:bg-neutral-800 transition-colors duration-500">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-20">
+                    <div class="max-w-2xl section-reveal">
+                        <h2 class="text-4xl lg:text-5xl font-black mb-6 dark:text-neutral-100">Specialized Tracks for <br> Growing Minds</h2>
+                        <p class="text-lg text-neutral-500 dark:text-neutral-400 font-medium">From rhythmic beats to field goals, we've designed three core tracks that foster excellence at every stage.</p>
+                    </div>
+                </div>
+                
+                <div id="tracks-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Music -->
+                    <div class="track-card bg-neutral-50 dark:bg-neutral-900 p-8 rounded-[40px] border border-neutral-100 dark:border-neutral-700 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 group">
+                        <img src="../assets/images/content/blog-creative.webp" alt="Music track preview image" class="w-full h-44 rounded-[28px] object-cover mb-8" loading="lazy">
+                        <div class="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center mb-10 group-hover:bg-primary transition-colors duration-500">
+                            <svg class="h-10 w-10 text-primary group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 dark:text-neutral-100 italic">The Music Track</h3>
+                        <p class="text-neutral-500 dark:text-neutral-400 mb-8 leading-relaxed">Developing pitch, rhythm, and confidence through world-class orchestral exposure.</p>
+                        <a href="#" class="inline-flex items-center text-primary font-bold uppercase tracking-widest text-[10px] group/btn">
+                            Learn More 
+                            <svg class="h-4 w-4 ml-2 group-hover/btn:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                        </a>
+                    </div>
+
+                    <!-- Art -->
+                    <div class="track-card bg-neutral-50 dark:bg-neutral-900 p-8 rounded-[40px] border border-neutral-100 dark:border-neutral-700 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 group">
+                        <img src="../assets/images/content/blog-safety.webp" alt="Art track preview image" class="w-full h-44 rounded-[28px] object-cover mb-8" loading="lazy">
+                        <div class="w-20 h-20 bg-accent/10 rounded-3xl flex items-center justify-center mb-10 group-hover:bg-accent transition-colors duration-500">
+                            <svg class="h-10 w-10 text-accent group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 dark:text-neutral-100 italic">The Creative Track</h3>
+                        <p class="text-neutral-500 dark:text-neutral-400 mb-8 leading-relaxed">Sculpting, painting, and digital design fundamentals for visual thinkers.</p>
+                        <a href="#" class="inline-flex items-center text-accent font-bold uppercase tracking-widest text-[10px] group/btn">
+                            Explore Works 
+                            <svg class="h-4 w-4 ml-2 group-hover/btn:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                        </a>
+                    </div>
+
+                    <!-- Sports -->
+                    <div class="track-card bg-neutral-50 dark:bg-neutral-900 p-8 rounded-[40px] border border-neutral-100 dark:border-neutral-700 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 group">
+                        <img src="../assets/images/content/contact-campus.webp" alt="Sports track preview image" class="w-full h-44 rounded-[28px] object-cover mb-8" loading="lazy">
+                        <div class="w-20 h-20 bg-secondary/10 rounded-3xl flex items-center justify-center mb-10 group-hover:bg-secondary transition-colors duration-500">
+                            <svg class="h-10 w-10 text-secondary group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 dark:text-neutral-100 italic">The Sports Track</h3>
+                        <p class="text-neutral-500 dark:text-neutral-400 mb-8 leading-relaxed">Strength, teamwork, and tactical play for young MVPs-in-training.</p>
+                        <a href="#" class="inline-flex items-center text-secondary font-bold uppercase tracking-widest text-[10px] group/btn">
+                            View Fields 
+                            <svg class="h-4 w-4 ml-2 group-hover/btn:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: Detailed About / Growth Story -->
+        <section id="about" class="py-32 bg-neutral-50 dark:bg-neutral-900 transition-colors duration-500">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col lg:flex-row items-center gap-16">
+                    <div class="max-w-2xl">
+                        <h2 class="text-4xl lg:text-5xl font-black mb-6 dark:text-neutral-100">A premium program for real growth</h2>
+                        <p class="text-lg text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                            BrightSteps pairs structured track learning with supervised safe zones, so kids build confidence through music, art, and movement.
+                        </p>
+                        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div class="bg-white/70 dark:bg-neutral-800/70 rounded-[32px] border border-neutral-100 dark:border-neutral-700 p-8">
+                                <img src="../assets/images/content/contact-campus.webp" alt="Kids learning in a classroom setting" class="w-full h-44 object-cover rounded-3xl" loading="lazy">
+                                <h3 class="text-xl font-bold mt-6 dark:text-neutral-100">Safe + supervised</h3>
+                                <p class="text-sm text-neutral-500 mt-2">Every session is designed for focus, comfort, and wellbeing.</p>
+                            </div>
+                            <div class="bg-white/70 dark:bg-neutral-800/70 rounded-[32px] border border-neutral-100 dark:border-neutral-700 p-8">
+                                <img src="../assets/images/content/parent-dashboard.webp" alt="Track coach guiding a small group" class="w-full h-44 object-cover rounded-3xl" loading="lazy">
+                                <h3 class="text-xl font-bold mt-6 dark:text-neutral-100">Coaches you can trust</h3>
+                                <p class="text-sm text-neutral-500 mt-2">Licensed facilitators support progress at every stage.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 relative">
+                        <img src="../assets/images/content/contact-campus.webp" alt="Kids smiling and engaging with activities" class="w-full h-auto object-cover rounded-[40px] shadow-[0_50px_120px_-40px_rgba(0,0,0,0.25)]" loading="lazy">
+                        <div class="absolute -bottom-6 -left-6 bg-white/90 backdrop-blur px-6 py-4 rounded-[24px] border border-white/40 shadow-xl">
+                            <p class="text-[10px] uppercase font-bold text-primary tracking-widest">Parent-led clarity</p>
+                            <p class="text-lg font-bold text-neutral-800 dark:text-neutral-50">Track progress, schedules, and notes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: Social Proof / Trust Banner -->
+        <section class="py-24 bg-white dark:bg-neutral-800 transition-colors duration-500">
+            <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 items-center text-center md:text-left">
+                <div class="space-y-2 reveal-stat">
+                    <img src="../assets/images/content/blog-creative.webp" alt="Music track highlights" class="w-12 h-12 rounded-2xl object-cover mx-auto md:mx-0" loading="lazy">
+                    <h4 class="text-4xl font-extrabold text-primary">4.9/5</h4>
+                    <p class="text-xs font-bold uppercase tracking-widest text-neutral-400">Parent Satisfaction</p>
+                </div>
+                <div class="space-y-2 reveal-stat">
+                    <img src="../assets/images/content/blog-safety.webp" alt="Art track highlights" class="w-12 h-12 rounded-2xl object-cover mx-auto md:mx-0" loading="lazy">
+                    <h4 class="text-4xl font-extrabold text-primary">120+</h4>
+                    <p class="text-xs font-bold uppercase tracking-widest text-neutral-400">Monthly Workshops</p>
+                </div>
+                <div class="space-y-2 reveal-stat">
+                    <img src="../assets/images/content/contact-campus.webp" alt="Sports track highlights" class="w-12 h-12 rounded-2xl object-cover mx-auto md:mx-0" loading="lazy">
+                    <h4 class="text-4xl font-extrabold text-primary">92%</h4>
+                    <p class="text-xs font-bold uppercase tracking-widest text-neutral-400">Returning Families</p>
+                </div>
+                <div class="space-y-2 reveal-stat text-center bg-primary/5 dark:bg-primary/10 rounded-2xl p-6 border border-primary/10 dark:border-primary/20">
+                    <img src="../assets/images/content/parent-dashboard.webp" alt="Coach speaking with parents" class="w-12 h-12 rounded-2xl object-cover mx-auto" loading="lazy">
+                    <p class="text-xs font-medium text-neutral-600 dark:text-neutral-300 mb-2 italic">"One place for everything."</p>
+                    <div class="flex items-center justify-center space-x-2">
+                        <div class="w-2 h-2 rounded-full bg-primary"></div>
+                        <span class="text-[10px] font-bold text-primary uppercase">Parent Review</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: Final Conversion Call-to-Action (CTA) -->
+        <section class="py-32 relative bg-neutral-50 dark:bg-neutral-900 transition-colors duration-500 px-6">
+            <div class="container mx-auto relative z-10">
+                <div class="bg-neutral-800 rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row items-stretch min-h-[500px]">
+                    <div class="lg:w-1/2 bg-primary p-12 lg:p-24 flex flex-col justify-center space-y-8">
+                        <h2 class="text-4xl font-extrabold text-white leading-tight lg:text-5xl">Start the adventure today.</h2>
+                        <p class="text-white/80 text-lg leading-relaxed">
+                            Register now to unlock the parent portal. Manage waivers, review schedules, and coordinate with coaches effortlessly.
+                        </p>
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
+                            <a href="signup.html" class="bg-white text-primary text-base font-bold px-10 py-5 rounded-custom hover:bg-neutral-50 shadow-xl transition-all text-center">
+                                Enroll Online
+                            </a>
+                            <a href="contact.html" class="bg-transparent border-2 border-white/30 text-white text-base font-bold px-10 py-5 rounded-custom hover:bg-white/10 transition-all text-center">
+                                Book Campus Tour
+                            </a>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 relative bg-neutral-700 overflow-hidden">
+                        <img src="../assets/images/content/blog-creative.webp" alt="Kids laughing" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- SECTION: Site Footer -->
+    <!-- TODO: Update office hours and legal links in the footer grid below -->
+    <footer class="bg-neutral-800 text-neutral-300 pt-32 pb-12 overflow-hidden relative">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 relative z-10">
+            <div class="space-y-8">
+                <img src="../assets/images/ui/logo-white.svg" alt="BrightSteps logo" class="h-10">
+                <p class="text-sm leading-relaxed opacity-70">
+                    Nurturing the next generation through expert-led music, art, and sports discovery tracks. Safety first, creativity always.
+                </p>
+            </div>
+            
+            <div>
+                <h3 class="text-white font-bold mb-8 uppercase text-xs tracking-widest">Navigation</h3>
+                <ul class="space-y-4 text-sm font-medium">
+                    <li><a href="about.html" class="hover:text-primary transition-colors">Our Story</a></li>
+                    <li><a href="services.html" class="hover:text-primary transition-colors">Programs & Tracks</a></li>
+                    <li><a href="blog.html" class="hover:text-primary transition-colors">Parent Journal</a></li>
+                    <li><a href="contact.html" class="hover:text-primary transition-colors">Campuses</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="text-white font-bold mb-8 uppercase text-xs tracking-widest">Portals</h3>
+                <ul class="space-y-4 text-sm font-medium">
+                    <li><a href="dashboard-user.html" class="hover:text-primary transition-colors">Parent Portal</a></li>
+                    <li><a href="dashboard-admin.html" class="hover:text-primary transition-colors">Admin Dashboard</a></li>
+                    <li><a href="login.html" class="hover:text-primary transition-colors">Provider Login</a></li>
+                    <li><a href="signup.html" class="hover:text-primary transition-colors">New Registration</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="text-white font-bold mb-8 uppercase text-xs tracking-widest">Contact</h3>
+                <ul class="space-y-4 text-sm">
+                    <li class="flex items-start space-x-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        <span>148 Rainbow Avenue, Austin, Texas 78701</span>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        <span>hello@brightsteps.demo</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="container mx-auto px-6 mt-32 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[10px] font-bold uppercase tracking-[0.2em] opacity-40">
+            <p>&copy; 2024 BrightSteps Activity Center. All rights reserved.</p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="coming-soon.html">New Campus Preview</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MAIN JS -->
+    <script type="module" src="../assets/js/main.js"></script>
+</body>
+</html>
