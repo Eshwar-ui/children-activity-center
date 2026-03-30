@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     /* SECTION: Mobile Navigation Logic */
     // Handles the sliding drawer menu for mobile/tablet views.
     
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.querySelector('nav');
+    
     if (navToggle && navMenu) {
         // 1.1 Backdrop Creation
         let backdrop = document.getElementById('nav-backdrop');
@@ -153,10 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', function() {
-            // toggle icons inside button
-            if (darkIcon) darkIcon.classList.toggle('hidden');
-            if (lightIcon) lightIcon.classList.toggle('hidden');
-            
             // toggle leading class + theme attribute (local CSS contract)
             document.documentElement.classList.toggle('dark');
             
@@ -168,8 +167,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.documentElement.removeAttribute('data-theme');
                 localStorage.setItem('color-theme', 'light');
             }
+
+            // Sync with other handlers
+            window.dispatchEvent(new CustomEvent('themeChanged', { 
+                detail: { theme: document.documentElement.classList.contains('dark') ? 'dark' : 'light' } 
+            }));
         });
     }
+
+    // Sync icons if theme changes from external sources (e.g. inline onclick)
+    window.addEventListener('themeChanged', (e) => {
+        const isDark = e.detail.theme === 'dark';
+        if (isDark) {
+            if (darkIcon) darkIcon.classList.add('hidden');
+            if (lightIcon) lightIcon.classList.remove('hidden');
+        } else {
+            if (darkIcon) darkIcon.classList.remove('hidden');
+            if (lightIcon) lightIcon.classList.add('hidden');
+        }
+    });
 
     // 3. RTL TOGGLE
     const rtlToggleBtn = document.getElementById('rtl-toggle');
@@ -177,17 +193,19 @@ document.addEventListener('DOMContentLoaded', () => {
         rtlToggleBtn.addEventListener('click', () => {
              const currentDir = document.documentElement.getAttribute('dir') || 'ltr';
              if (currentDir === 'rtl') {
-                 document.documentElement.setAttribute('dir', 'ltr');
-                 localStorage.setItem('dir', 'ltr');
+                  document.documentElement.setAttribute('dir', 'ltr');
+                 localStorage.setItem('direction', 'ltr');
+                 window.dispatchEvent(new CustomEvent('directionChanged', { detail: { dir: 'ltr' } }));
              } else {
                  document.documentElement.setAttribute('dir', 'rtl');
-                 localStorage.setItem('dir', 'rtl');
+                 localStorage.setItem('direction', 'rtl');
+                 window.dispatchEvent(new CustomEvent('directionChanged', { detail: { dir: 'rtl' } }));
              }
         });
     }
 
     // Initialize RTL
-    if (localStorage.getItem('dir') === 'rtl') {
+    if (localStorage.getItem('direction') === 'rtl') {
         document.documentElement.setAttribute('dir', 'rtl');
     }
 

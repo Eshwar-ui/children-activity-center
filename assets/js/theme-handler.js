@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const htmlElement = document.documentElement;
 
     // TODO: Add support for more granular themes if requested (e.g. system-auto)
-    const currentTheme = localStorage.getItem('theme') || 'light';
+    const currentTheme = localStorage.getItem('color-theme') || 'light';
     const currentDir = localStorage.getItem('direction') || 'ltr';
 
     initializeTemplate();
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             htmlElement.classList.remove('dark');
             htmlElement.setAttribute('data-theme', 'light');
         }
-        localStorage.setItem('theme', theme);
+        localStorage.setItem('color-theme', theme);
         
         // Dispatch event for UI synchronization (e.g. icon flips)
         window.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme } }));
